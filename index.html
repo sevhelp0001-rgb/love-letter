@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>for beng — love letter</title>
+<link rel="icon" href="data:,">
+<style>
+  :root{
+    --bg:#fdf8f4;
+    --envelope:#d96a7b;
+    --paper:#ffffff;
+    --shadow:rgba(0,0,0,0.12);
+    --accent:#a23344;
+    --sans:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  body{
+    margin:0;
+    padding:32px;
+    background:var(--bg);
+    font-family:var(--sans);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* flowers */
+  .flowers{
+    position:fixed;
+    top:0;
+    bottom:0;
+    width:120px;
+    background-repeat:no-repeat;
+    background-size:contain;
+    opacity:0.23;
+    pointer-events:none;
+    z-index:0;
+  }
+  .flowers.left{
+    left:0;
+    background-image:url('https://i.imgur.com/vM0z8yJ.png');
+  }
+  .flowers.right{
+    right:0;
+    background-image:url('https://i.imgur.com/vM0z8yJ.png');
+    transform:scaleX(-1);
+  }
+
+  /* main container */
+  .stage{
+    position:relative;
+    z-index:2;
+    text-align:center;
+  }
+
+  .title{
+    font-size:14px;
+    color:#7a6a6a;
+    margin-bottom:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+
+  /* envelope wrapper */
+  .envelope-wrap{
+    width:340px;
+    max-width:90%;
+    perspective:1200px;
+    margin:auto;
+  }
+
+  /* envelope */
+  .envelope{
+    width:100%;
+    height:220px;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform .7s cubic-bezier(.2,.85,.25,1);
+    cursor:pointer;
+  }
+
+  /* body */
+  .body{
+    position:absolute;
+    inset:0;
+    background:var(--envelope);
+    border-radius:12px;
+    box-shadow:0 15px 30px var(--shadow);
+  }
+
+  /* flap */
+  .flap{
+    position:absolute;
+    top:-2px;
+    left:0;
+    right:0;
+    height:100px;
+    transform-origin:top;
+    transition:transform .7s cubic-bezier(.2,.85,.25,1);
+  }
+  .flap::before{
+    content:"";
+    display:block;
+    width:100%;
+    height:100%;
+    background:linear-gradient(180deg,#f5ccd3,#f2b3be);
+    clip-path:polygon(50% 0%,100% 100%,0% 100%);
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.12) inset;
+  }
+
+  /* seal */
+  .seal{
+    position:absolute;
+    top:55px;
+    left:50%;
+    transform:translateX(-50%);
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:radial-gradient(circle,#ffd7df,#f3a3b1 60%,var(--accent));
+    box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:20px;
+    font-weight:700;
+    pointer-events:none;
+  }
+
+  /* letter */
+  .letter{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:88%;
+    height:88%;
+    background:var(--paper);
+    border-radius:10px;
+    padding:24px;
+    box-shadow:0 18px 40px var(--shadow);
+    font-family:var(--sans);
+    line-height:1.55;
+    transition:transform .8s, opacity .5s;
+    overflow:auto;
+    opacity:0;
+  }
+
+  /* states */
+  .closed .letter{ transform:translate(-50%, 100%); }
+  .opened .letter{ transform:translate(-50%, -10px); opacity:1; }
+  .opened .flap{ transform:rotateX(-180deg); }
+  .opened.envelope{ transform:translateY(-20px); }
+
+  .hint{
+    margin-top:10px;
+    color:#7a7a7a;
+    font-size:13px;
+  }
+
+  /* letter text */
+  .message{
+    font-family:var(--sans);
+    font-size:15px;
+    white-space:pre-wrap;
+    font-variant:small-caps;
+  }
+  .signature{
+    margin-top:18px;
+    font-weight:bold;
+    font-family:var(--sans);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- flower decorations -->
+<div class="flowers left"></div>
+<div class="flowers right"></div>
+
+<div class="stage">
+  <div class="title">open me</div>
+
+  <div class="envelope-wrap">
+    <div id="envelope" class="envelope closed" tabindex="0">
+      <div class="flap"></div>
+      <div class="body"></div>
+      <div class="seal">❤</div>
+
+      <div class="letter">
+        <div class="message">
+beng,
+
+happy birthday, love. i know we’re celebrating this one from a distance again, but i hope you still feel how much i’m thinking about you today. if i could teleport, i’d already be there annoying you, hugging you, and stealing your food.
+
+sometimes i wonder what i did to deserve you — to deserve your love. not a single day goes by when i don’t spend time thinking about you. there’s nothing i can write or say to fully express what you mean to me. i never thought someone could feel so much like home or make all my problems disappear until i met you. there’s no one like you. i can’t wait to be able to hug you, take cute pics, and tell you all of this in real life. you have my heart forever. i love you.
+
+thank you for being you — for the patience, the laughs, the random stories, and the way you somehow make everything feel lighter even when we’re far apart. you have no idea how much i appreciate you, beng.
+
+i hope your day is chill and full of things you enjoy. you deserve a good birthday, good energy, and good food (and yes, you better eat something nice). one day soon, we’ll celebrate in person, okay? no more video calls — just us.
+
+enjoy your day, beng. i love you.
+        </div>
+        <div class="signature">— kael</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint">click the envelope to open</div>
+</div>
+
+<script>
+  const envelope = document.getElementById("envelope");
+  let open = false;
+
+  function toggle(){
+    open = !open;
+    envelope.classList.toggle("opened", open);
+    envelope.classList.toggle("closed", !open);
+  }
+
+  envelope.addEventListener("click", toggle);
+  envelope.addEventListener("keydown", e=>{
+    if(e.key===" "||e.key==="Enter"){ e.preventDefault(); toggle(); }
+  });
+</script>
+
+</body>
+</html>
